@@ -1,11 +1,34 @@
-import './App.css';
 import Sidebar from './Sidebar';
+import { useState } from 'react';
+import uuid from 'react-uuid';
+import MainArea from './MainArea';
 
 function App() {
+  const [notes, setNotes] = useState([]);
+
+  const onAddNote = () => {
+    const newNote = {
+      id: uuid(),
+      title: 'Untitle Note',
+      body: '',
+      lastModified: Date.now(),
+    };
+    setNotes([newNote, ...notes]);
+  };
+
+  const onDeleteNote = (idToDelete) => {
+    setNotes(notes.filter((note) => note.id !== idToDelete));
+  };
+
   return (
-    <>
-      <Sidebar />
-    </>
+    <div className="flex">
+      <Sidebar
+        notes={notes}
+        onAddNote={onAddNote}
+        onDeleteNote={onDeleteNote}
+      />
+      <MainArea />
+    </div>
   );
 }
 
