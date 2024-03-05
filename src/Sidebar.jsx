@@ -7,6 +7,8 @@ const Sidebar = ({
   activeNote,
   setActiveNote,
 }) => {
+  const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
+
   return (
     <div className="border-r-4 w-full max-w-96 min-h-dvh ms:hidden bg-stone-300">
       <div className="flex justify-between p-5">
@@ -20,7 +22,7 @@ const Sidebar = ({
         </button>
       </div>
       <div>
-        {notes.map((note) => {
+        {sortedNotes.map((note) => {
           return (
             <div
               onClick={() => setActiveNote(note.id)}
