@@ -5,6 +5,7 @@ import MainArea from './MainArea';
 
 function App() {
   const [notes, setNotes] = useState([]);
+  const [activeNote, setActiveNote] = useState(null);
 
   const onAddNote = () => {
     const newNote = {
@@ -26,6 +27,8 @@ function App() {
         notes={notes}
         onAddNote={onAddNote}
         onDeleteNote={onDeleteNote}
+        activeNote={activeNote}
+        setActiveNote={setActiveNote}
       />
       <MainArea />
     </div>
