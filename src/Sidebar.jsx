@@ -1,6 +1,14 @@
 import PropTypes from 'prop-types';
 
-const Sidebar = ({ notes, onAddNote, onDeleteNote }) => {
+const Sidebar = ({
+  notes,
+  onAddNote,
+  onDeleteNote,
+  activeNote,
+  setActiveNote,
+}) => {
+  const sortedNotes = notes.sort((a, b) => b.lastModified - a.lastModified);
+
   return (
     <div className="border-r-4 w-full max-w-96 min-h-dvh ms:hidden bg-stone-300">
       <div className="flex justify-between p-5">
@@ -14,9 +22,17 @@ const Sidebar = ({ notes, onAddNote, onDeleteNote }) => {
         </button>
       </div>
       <div>
-        {notes.map((note) => {
+        {sortedNotes.map((note) => {
           return (
-            <div className="bg-stone-400 hover:bg-stone-500 p-5" key={note.id}>
+            <div
+              onClick={() => setActiveNote(note.id)}
+              className={`p-5 cursor-pointer ${
+                activeNote === note.id
+                  ? 'bg-blue-400'
+                  : 'bg-stone-400 hover:bg-stone-500'
+              }`}
+              key={note.id}
+            >
               <div className="flex justify-between">
                 <strong className="text-3xl">{note.title}</strong>
                 <button
@@ -54,6 +70,8 @@ Sidebar.propTypes = {
 
   onAddNote: PropTypes.func,
   onDeleteNote: PropTypes.func,
+  activeNote: PropTypes.bool,
+  setActiveNote: PropTypes.func,
 };
 
 export default Sidebar;
