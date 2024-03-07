@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import uuid from 'react-uuid';
 import MainArea from './MainArea';
+import LoginPage from './LoginPage';
 
 function App() {
   const [notes, setNotes] = useState(
@@ -52,6 +53,7 @@ function App() {
         setActiveNote={setActiveNote}
       />
       <MainArea activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+      <LoginPage />
     </div>
   );
 }
