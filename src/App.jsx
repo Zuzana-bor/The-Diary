@@ -44,17 +44,20 @@ function App() {
   };
 
   return (
-    <div className="flex">
-      <Sidebar
-        notes={notes}
-        onAddNote={onAddNote}
-        onDeleteNote={onDeleteNote}
-        activeNote={activeNote}
-        setActiveNote={setActiveNote}
-      />
-      <MainArea activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+    <>
+      <div className="flex">
+        {/*<Sidebar
+    notes={notes}
+    onAddNote={onAddNote}
+    onDeleteNote={onDeleteNote}
+    activeNote={activeNote}
+    setActiveNote={setActiveNote}
+  />
+  <MainArea activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+  */}
+      </div>
       <LoginPage />
-    </div>
+    </>
   );
 }
 
